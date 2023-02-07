@@ -28,3 +28,40 @@ public:
         
     }
 };
+
+
+
+Problem: 167. Two Sum II - Input Array Is Sorted
+Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+
+Approach: We solve this problem using two pointers. Left pointer L and right pointer R.
+1. L=0 and R=nums.size()-1
+2. if sum is less than target then increase L by 1
+3. if sum is greater than target then decrease R by 1
+4. when sum==target, return the index of L and R.
+
+C++ solutions:
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> v;
+        int n = numbers.size();
+        int L=0, R=n-1;
+       while(L<R)
+        {
+            if(numbers[L]+numbers[R]==target)
+            {
+                v.push_back(L+1);
+                v.push_back(R+1);
+                return v;
+            }
+            if(numbers[L]+numbers[R]<target)
+                L++;
+            if(numbers[L]+numbers[R]>target) 
+                R--;
+        }
+        return v;
+    }
+
+};
