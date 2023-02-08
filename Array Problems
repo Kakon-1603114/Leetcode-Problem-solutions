@@ -1,0 +1,25 @@
+Given a binary array nums, return the maximum number of consecutive 1's in the array.
+Approach: To find the max consecutive ones
+1.iterate through the array and keep track of the amount of ones you have seen in a row with the 'count' variable. 
+2.Use the 'maxcount' variable to save the max number that 'count' reaches. This is a sliding window problem. 
+3.Though there is no explicit start and end of the window in the code,
+4.The 'count' variable keeps track of the amount of consecutive ones since the start of the window
+and when the count is reset to 0 that is like moving the start of the window up to the current position.
+
+C++ solutions:
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxcount = 0;
+        int count = 0;
+        for(int i = 0; i < nums.size(); i++){
+            if(nums[i] == 1){
+                count++;
+                maxcount = max(count, maxcount);
+            }
+            else                
+                count = 0;                            
+        }
+        return maxcount;
+    }
+};
